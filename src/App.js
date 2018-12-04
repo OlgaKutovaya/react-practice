@@ -43,8 +43,22 @@ class App extends Component {
         })
     };
 
+    deleteHandler (index)  {
+        const newCars = [...this.state.cars];
+        newCars.splice(index, 1);
+        this.setState({
+            cars: newCars
+        })
+    };
+
     onChangeCarNameHandler = (name, index) => {
-        const car = this.state.cars[index]
+        const car = this.state.cars[index];
+        car.name = name;
+        const newCars = [...this.state.cars];
+        newCars[index] = car;
+        this.setState({
+            cars: newCars
+        })
     };
 
     render() {
@@ -98,6 +112,7 @@ class App extends Component {
                         <Car key={index}
                              name={car.name}
                              year={car.year}
+                             onDelete={this.deleteHandler.bind(this, index)}
                              onChangeName={(event) =>
                                  this.onChangeCarNameHandler(event.target.value, index)}
                         />
