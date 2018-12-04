@@ -7,6 +7,7 @@ import Car from "./components/Car";
 class App extends Component {
     state = {
         value: '',
+        boxValue: '',
         title: 'Title',
         info: 'Information',
         cars: [
@@ -18,8 +19,10 @@ class App extends Component {
     };
 
     submitHandle = (text) => {
-        this.setState({
-            value: text
+        this.setState((prevstate) => {
+            return {
+                boxValue: prevstate.value
+            }
         });
         console.log(text);
     };
@@ -64,6 +67,7 @@ class App extends Component {
     render() {
         return (
             <div className="app">
+
                 <div>
                     <h1>{this.state.title}</h1>
                     <button
@@ -80,7 +84,7 @@ class App extends Component {
                     </button>
                 </div>
 
-                <div className="info-wrapper">{this.state.value}</div>
+                <div className="info-wrapper">{this.state.boxValue}</div>
                 <form>
                     <input type="text"
                            className='push-text'
@@ -91,7 +95,7 @@ class App extends Component {
                     />
                     <button onClick={(event) => {
                         event.preventDefault();
-                        this.submitHandle(this.state.value);
+                        this.submitHandle(event);
                     }}>
                         Push text
                     </button>
