@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import InnerBox from "./components/InnerBox";
 import Car from "./components/Car";
+import './style.less';
 
 
 class App extends Component {
